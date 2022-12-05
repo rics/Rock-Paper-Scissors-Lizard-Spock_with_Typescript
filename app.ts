@@ -5,10 +5,11 @@ const PAPER: string = 'PAPER';
 const SCISSORS: string = 'SCISSORS';
 const LIZARD: string = 'LIZARD';
 const SPOCK: string = 'SPOCK';
-const DEFAULT_CHOICE: string = ROCK;
 const RESULT_DRAW: string = 'DRAW';
 const RESULT_USER_WINS: string = 'USER_WINS';
 const RESULT_BOT_WINS: string = 'BOT_WINS';
+const OPTIONS = [`${ROCK}`, `${PAPER}`, `${SCISSORS}`, `${LIZARD}`, `${SPOCK}`];
+const DEFAULT_CHOICE: string = OPTIONS[Math.floor(Math.random()*OPTIONS.length)];
 
 let gameIsRunning: boolean = false;
 
@@ -17,13 +18,8 @@ const getUserChoice = function (): string {
     `${ROCK}, ${PAPER}, ${SCISSORS}, ${LIZARD} or ${SPOCK} ?`,
     ''
   )!.toUpperCase();
-  if (
-    selection !== ROCK &&
-    selection !== PAPER &&
-    selection !== SCISSORS &&
-    selection !== LIZARD &&
-    selection !== SPOCK
-  ) {
+
+  if ( !OPTIONS.includes(selection) ) {
     alert(`Invalid choice! We chose ${DEFAULT_CHOICE} for you!`);
     return DEFAULT_CHOICE;
   }
